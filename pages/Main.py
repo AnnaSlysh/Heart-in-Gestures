@@ -6,6 +6,7 @@ import PublicOrganizations
 import LearningMaterials
 import utils
 from pages import Game
+from model.keypoint_classifier import recognition
 
 
 # Словник для меню на українській мові
