@@ -1,6 +1,5 @@
 import streamlit as st 
 import GameRules 
-from model.keypoint_classifier import recognition
 import Help
 import AboutUs
 import PublicOrganizations
