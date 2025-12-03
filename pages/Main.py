@@ -1,11 +1,12 @@
 import streamlit as st 
 import GameRules 
-import Game
+from model.keypoint_classifier import recognition
 import Help
 import AboutUs
 import PublicOrganizations
 import LearningMaterials
 import utils
+from pages import Game
 
 
 # Словник для меню на українській мові
