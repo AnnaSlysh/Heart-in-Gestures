@@ -1,3 +1,4 @@
+# Базовий образ Python 3.10
 FROM python:3.10-bullseye
 
 # Встановлюємо системні залежності для OpenCV, Mediapipe і TensorFlow
@@ -18,7 +19,7 @@ WORKDIR /app
 # Копіюємо залежності
 COPY requirements.txt .
 
-# Оновлюємо pip і встановлюємо Python-пакети
+# Оновлюємо pip та встановлюємо Python-пакети
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
@@ -28,5 +29,5 @@ COPY . .
 # Відкриваємо порт 8080 для Render
 EXPOSE 8080
 
-# Команда запуску Streamlit на Render
+# Команда запуску Streamlit
 CMD ["streamlit", "run", "pages/Main.py", "--server.address=0.0.0.0", "--server.port=8080"]
