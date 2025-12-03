@@ -1,7 +1,8 @@
 FROM python:3.10-bullseye
 
-# Встановлюємо системні залежності для OpenCV та Mediapipe
+# Встановлюємо системні залежності для OpenCV, Mediapipe і TensorFlow
 RUN apt-get update && apt-get install -y \
+    build-essential \
     libglib2.0-0 \
     libgl1-mesa-glx \
     libgl1 \
@@ -9,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     libsm6 \
     libxext6 \
     libxrender1 \
-    && apt-get clean
+ && apt-get clean
 
 # Робоча директорія
 WORKDIR /app
@@ -24,8 +25,8 @@ RUN pip install -r requirements.txt
 # Копіюємо весь проєкт
 COPY . .
 
-# Відкриваємо порт для Streamlit
-EXPOSE 8501
+# Відкриваємо порт 8080 для Render
+EXPOSE 8080
 
-# Команда запуску
-CMD ["streamlit", "run", "pages/Main.py", "--server.address=0.0.0.0", "--server.port=8501"]
+# Команда запуску Streamlit на Render
+CMD ["streamlit", "run", "pages/Main.py", "--server.address=0.0.0.0", "--server.port=8080"]
