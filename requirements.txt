@@ -1,18 +1,18 @@
 # Streamlit для інтерфейсу
 streamlit==1.28.0
 
-# TensorFlow для keypoint_classifier
+# TensorFlow CPU-версія
 tensorflow-cpu==2.14.0
 
-# OpenCV для обробки відео/камери
+# OpenCV без GUI
 opencv-python-headless==4.8.1.78
 
-# Mediapipe для розпізнавання поз/ключових точок
-mediapipe==0.10.13
+# Mediapipe сумісна з Python 3.10
+mediapipe==0.10.13.1
 
 # Наукові бібліотеки
-numpy==1.26.5
-pandas==2.1.0
+numpy==1.25.2
+pandas==2.0.3
 
-# Для роботи з файлами та зображеннями
+# Робота з зображеннями
 Pillow==10.1.0
