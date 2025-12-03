@@ -1,18 +1,7 @@
-# Streamlit для інтерфейсу
 streamlit==1.28.0
-
-# TensorFlow CPU-версія
 tensorflow-cpu==2.14.0
-
-# OpenCV без GUI
 opencv-python-headless==4.8.1.78
-
-# Mediapipe сумісна з Python 3.10
 mediapipe==0.10.21
-
-# Наукові бібліотеки
 numpy==1.25.2
 pandas==2.0.3
-
-# Робота з зображеннями
 Pillow==10.1.0
