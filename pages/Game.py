@@ -98,7 +98,7 @@ def app():
         level = st.session_state.level
         st.markdown(f'<div class="title_subheader">{level_titles[level]}</div>', unsafe_allow_html=True)
 
-        if "random_word" not in st.session_state:
+        if "random_word" not in st.session_state or "letter_states" not in st.session_state:
             reset_game()
 
         word = st.session_state["random_word"]
