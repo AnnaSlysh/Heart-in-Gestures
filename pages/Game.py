@@ -22,22 +22,36 @@ def change_level(level):
 def reset_game():
     levels = {
         "easy": (["ЛАМПА", "МЕТА", "СИЛА", "ЛИСТ", "ТЕПЛО", "ПАН", "СЕЛО", "МАТИ", "ПОЛЕ", "САЛО", "ЛОТО", "ТОН", "СТАН", "СМОЛА", "ЛИПА", "СИН", "НАСИП", "ЛОТОС",
-                  "КІТ", "ЗУБ", "ДЕНЬ", "КОТ", "КАЗКА", "ЗИМА", "ЙОГА", "КИТ", "ДІМ", "ЛЕД"], 10),
+                  "КІТ", "ЗУБ", "ДЕНЬ", "КОТ", "КАЗКА", "ЗИМА", "ЙОГА", "КИТ", "ДІМ", "ЛЕД"],),
         "medium": (["МІСТО", "ІСПИТ", "РОБОТА", "МОТИВ", "НЕБО", "МІСТ", "ВИСОТА", "СУМА", "ПЕРО", "ЧОРНИЛА", "ТІСТО", "СТІЛ", "ЛІТОПИС", "ВІТЕР", "ТУМАН", "ВЕЧІР", "ПОБУТ", "БОЛОТО", "ЛІТР", "СТОВП", "БЕТОН",
-                    "КОЗАК", "ДЕРЕВО", "ЗЕРНО", "КОБРА", "ДВЕРІ", "ЗІРКА", "ЙОЛОП", "КІНЕЦЬ", "ДОЩ", "ЦИРК"], 10),
+                    "КОЗАК", "ДЕРЕВО", "ЗЕРНО", "КОБРА", "ДВЕРІ", "ЗІРКА", "ЙОЛОП", "КІНЕЦЬ", "ДОЩ", "ЦИРК"],),
         "hard": (["УСПІХ", "ГУМОР", "ШИЯ", "ЮРИСТ", "ЧЕМПІОН", "СИМВОЛ", "ФАХ", "СПАЛАХ", "ІНЖЕНЕР", "ЛЮБОВ", "ПЕЧИВО", "ЛИСТЯ", "ФІЛОЛОГІЯ", "ФОРМА", "ГОРА", "ХВІСТ", "ФАНЕРА", "ШТАНИ", "СТРУМ",
-                  "ДЕРЖАВА", "КОЗАЦТВО", "ЄДНІСТЬ", "ЗБРОЯРСТВО", "ЦІННІСТЬ", "ЩЕДРІСТЬ", "ДРУЖБА", "КУЛЬТУРА"], 10),
+                  "ДЕРЖАВА", "КОЗАЦТВО", "ЄДНІСТЬ", "ЗБРОЯРСТВО", "ЦІННІСТЬ", "ЩЕДРІСТЬ", "ДРУЖБА", "КУЛЬТУРА"],),
     }
-    words, tries = levels[st.session_state["level"]]
-    st.session_state["random_word"] = random.choice(words)
-    st.session_state["count"] = tries
-    st.session_state["guessed_letters"] = []
-    st.session_state["not_guessed_letters"] = []
-    st.session_state["recognized_letter"] = ""
+    words = levels[st.session_state["level"]][0]
+    word = random.choice(words)
+    st.session_state["random_word"] = word
+    st.session_state["current_index"] = 0
+    st.session_state["letter_states"] = ["pending"] * len(word)
+    st.session_state["wrong_gesture"] = None
     st.session_state["game_won"] = False
-    st.session_state["display_word"] = " ".join(["_" for _ in st.session_state["random_word"]])
+    st.session_state["recognized_letter"] = ""
     st.session_state["dynamic_mode"] = False
     st.session_state["dynamic_buffer"] = []
+
+
+def render_word(word, letter_states, current_index):
+    parts = []
+    for i, letter in enumerate(word):
+        state = letter_states[i]
+        if state == "correct":
+            css_class = "word-letter correct"
+        elif i == current_index:
+            css_class = "word-letter current"
+        else:
+            css_class = "word-letter pending"
+        parts.append(f'<div class="{css_class}">{letter}</div>')
+    return f'<div class="word-display">{"".join(parts)}</div>'
 
 
 def app():
@@ -75,28 +89,11 @@ def app():
 
     # ── Active game ───────────────────────────────────────────────
     else:
-        st.session_state.easy = st.empty()
-        st.session_state.medium = st.empty()
-        st.session_state.hard = st.empty()
-
         level_titles = {
             "easy":   "Легкий рівень",
             "medium": "Середній рівень",
             "hard":   "Складний рівень",
         }
-
-        images = [
-            "images/10.10 (1).svg",
-            "images/10.9 (1).svg",
-            "images/10.8 (1).svg",
-            "images/10.7 (1).svg",
-            "images/10.6 (1).svg",
-            "images/10.5 (1).svg",
-            "images/10.4 (1).svg",
-            "images/10.3 (1).svg",
-            "images/10.2 (1).svg",
-            "images/10.1 (1).svg",
-        ]
 
         level = st.session_state.level
         st.markdown(f'<div class="title_subheader">{level_titles[level]}</div>', unsafe_allow_html=True)
@@ -104,25 +101,28 @@ def app():
         if "random_word" not in st.session_state:
             reset_game()
 
-        count = st.session_state["count"]
+        word = st.session_state["random_word"]
+        letter_states = st.session_state["letter_states"]
+        current_index = st.session_state["current_index"]
         game_won = st.session_state.get("game_won", False)
+        wrong_gesture = st.session_state.get("wrong_gesture")
 
-        if "images" not in st.session_state:
-            st.session_state.images = images
+        # ── Word display ──────────────────────────────────────────
+        st.markdown(render_word(word, letter_states, current_index), unsafe_allow_html=True)
+        st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 
-        img_index = max(0, min(len(images) - 1, len(images) - count))
+        if game_won:
+            st.image("images/hardwinn.svg", width=250)
+            st.markdown(
+                '<div class="game-stat" style="text-align:center;margin-top:12px;">'
+                '<div class="game-stat-value">Чудово! Ви склали все слово! 🎉</div>'
+                '</div>',
+                unsafe_allow_html=True,
+            )
+        else:
+            col1, col2 = st.columns(2)
 
-        col1, col2 = st.columns(2)
-        with col1:
-            if game_won:
-                st.image("images/hardwinn.svg", width=250)
-            elif count == 0:
-                st.image("images/loseee.svg", width=250)
-            else:
-                st.image(images[img_index], width=250)
-
-        with col2:
-            if not game_won and count > 0:
+            with col1:
                 if "camera_key" not in st.session_state:
                     st.session_state.camera_key = 0
                 img_file = st.camera_input(
@@ -139,43 +139,23 @@ def app():
                     else:
                         st.warning("Руку не виявлено / No hand detected. Спробуйте ще / Try again.")
 
-        st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
+            with col2:
+                if current_index < len(word):
+                    current_letter = word[current_index]
+                    st.markdown(f'''
+                    <div class="game-stat">
+                        <div class="game-stat-label">Покажіть жест для літери</div>
+                        <div class="game-stat-value" style="font-size:56px;line-height:1.1;">{current_letter}</div>
+                    </div>
+                    ''', unsafe_allow_html=True)
 
-        recognized = st.session_state.get("recognized_letter", "") or "—"
-        display_word = st.session_state.get("display_word", "")
-        guessed = st.session_state.get("guessed_letters", [])
-        not_guessed = st.session_state.get("not_guessed_letters", [])
-
-        guessed_html = "".join([f'<span class="chip">{l}</span>' for l in guessed]) if guessed else "<span style='color:#aaa;font-size:14px'>—</span>"
-        missed_html = "".join([f'<span class="chip wrong">{l}</span>' for l in not_guessed]) if not_guessed else "<span style='color:#aaa;font-size:14px'>—</span>"
-
-        col_a, col_b = st.columns(2)
-        with col_a:
-            st.markdown(f'''
-            <div class="game-stat">
-                <div class="game-stat-label">Розпізнаний жест</div>
-                <div class="game-stat-value">{recognized}</div>
-            </div>
-            ''', unsafe_allow_html=True)
-            st.markdown(f'''
-            <div class="game-stat">
-                <div class="game-stat-label">Слово</div>
-                <div class="game-stat-value">{display_word}</div>
-            </div>
-            ''', unsafe_allow_html=True)
-        with col_b:
-            st.markdown(f'''
-            <div class="game-stat">
-                <div class="game-stat-label">Вгадані літери</div>
-                <div style="padding-top:4px;">{guessed_html}</div>
-            </div>
-            ''', unsafe_allow_html=True)
-            st.markdown(f'''
-            <div class="game-stat">
-                <div class="game-stat-label">Невгадані літери</div>
-                <div style="padding-top:4px;">{missed_html}</div>
-            </div>
-            ''', unsafe_allow_html=True)
+                if wrong_gesture:
+                    st.markdown(f'''
+                    <div class="game-stat" style="margin-top:12px;">
+                        <div class="game-stat-label">Ваш жест (неправильно)</div>
+                        <div class="game-stat-value" style="font-size:56px;line-height:1.1;color:hsl(0,60%,50%);">{wrong_gesture}</div>
+                    </div>
+                    ''', unsafe_allow_html=True)
 
         st.markdown("<div style='margin-top:8px;'></div>", unsafe_allow_html=True)
         st.button("Назад до меню", on_click=lambda: change_level("menu"), key="back_1button", use_container_width=True)

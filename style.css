@@ -181,6 +181,41 @@ footer { visibility: hidden; }
     letter-spacing: 2px;
 }
 
+/* ─── Word Letter Boxes ──────────────────────────────────────── */
+.word-display {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px 0 8px;
+}
+.word-letter {
+    width: 52px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 26px;
+    font-weight: 900;
+    font-family: 'Nunito', sans-serif;
+    border: 2px solid hsl(163, 20%, 80%);
+    background: #ffffff;
+    color: hsl(163, 46%, 25%);
+    transition: background 0.2s, border-color 0.2s;
+}
+.word-letter.correct {
+    background: hsl(142, 55%, 88%);
+    border-color: hsl(142, 50%, 52%);
+    color: hsl(142, 50%, 22%);
+}
+.word-letter.current {
+    background: hsl(45, 90%, 88%);
+    border-color: hsl(45, 70%, 52%);
+    color: hsl(30, 80%, 28%);
+    box-shadow: 0 0 0 3px hsl(45, 80%, 72%);
+}
+
 /* ─── Letter Chips ───────────────────────────────────────────── */
 .chip {
     display: inline-block;

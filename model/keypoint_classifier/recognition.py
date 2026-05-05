@@ -1,4 +1,4 @@
-
+﻿
 
 
 
@@ -80,68 +80,23 @@ def get_args():
 
 
 def process_letter():
-   
     letter = st.session_state["recognized_letter"].upper()
     word = st.session_state["random_word"]
-    display_chars = list(st.session_state["display_word"].replace(" ", ""))
+    current_index = st.session_state.get("current_index", 0)
 
+    if current_index >= len(word):
+        return
 
-
-
-    if letter in word:
-        if letter not in st.session_state["guessed_letters"]:
-            st.session_state["guessed_letters"].append(letter)
-
-
-
-
-            # Оновлення слова
-            for i, l in enumerate(word):
-                if l == letter:
-                    display_chars[i] = letter
-
-
-
-
-            updated_display = " ".join(display_chars)
-            st.session_state["display_word"] = updated_display
-
-
-
-
-
-
-
-
-        # Перевірка на перемогу
-        if word == "".join(display_chars):
+    if letter == word[current_index]:
+        st.session_state["letter_states"][current_index] = "correct"
+        st.session_state["current_index"] = current_index + 1
+        st.session_state["wrong_gesture"] = None
+        if current_index + 1 >= len(word):
             st.session_state["game_won"] = True
-
-
-
-
     else:
-        if letter not in st.session_state["not_guessed_letters"]:
-            st.session_state["not_guessed_letters"].append(letter)
-            st.session_state["count"] -= 1
+        st.session_state["wrong_gesture"] = letter
 
 
-
-
-
-
-
-
-
-
-
-        if st.session_state["count"] == 0:
-            st.session_state["game_won"] = False
-
-
-
-
-   
 def draw_info_text(image, brect, handedness, hand_sign_text, remaining_seconds=None):
     cv.rectangle(image, (brect[0], brect[1]), (brect[2], brect[1] - 22), (0, 0, 0), -1)
 
