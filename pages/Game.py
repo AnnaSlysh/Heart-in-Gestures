@@ -72,8 +72,8 @@ def app():
         col1, col2, col3 = st.columns(3)
 
         level_meta = [
-            (col1, "Легкий",   "Прості слова,\nідеально для початку",   "easy_button",   "easy"),
-            (col2, "Середній", "Складніші слова,\nдля практики",         "medium_button", "medium"),
+            (col1, "Легкий",   "Прості слова",   "easy_button",   "easy"),
+            (col2, "Середній", "Складніші слова",         "medium_button", "medium"),
             (col3, "Складний", "Для досвідчених",                         "hard_button",   "hard"),
         ]
 

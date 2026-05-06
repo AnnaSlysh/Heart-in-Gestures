@@ -80,9 +80,11 @@ def get_args():
 
 
 def process_letter():
+    if not all(k in st.session_state for k in ("recognized_letter", "random_word", "letter_states", "current_index")):
+        return
     letter = st.session_state["recognized_letter"].upper()
     word = st.session_state["random_word"]
-    current_index = st.session_state.get("current_index", 0)
+    current_index = st.session_state["current_index"]
 
     if current_index >= len(word):
         return
