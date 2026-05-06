@@ -426,15 +426,21 @@ div.stButton > button {
     text-align: center;
 }
 
-.stButton > button {
+.stButton > button,
+[data-testid="baseButton-secondary"],
+[data-testid="baseButton-primary"] {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
+    text-align: center !important;
 }
 
 .stButton > button p,
 .stButton > button div,
-.stButton > button span {
+[data-testid="baseButton-secondary"] p,
+[data-testid="baseButton-secondary"] div,
+[data-testid="baseButton-primary"] p,
+[data-testid="baseButton-primary"] div {
     text-align: center !important;
     width: 100% !important;
     margin: 0 !important;
