@@ -100,9 +100,3 @@ def app():
         </div>
         ''', unsafe_allow_html=True)
 
-    st.markdown(f'''
-    <div style="text-align:center; margin-top:28px; font-family:'Inter',sans-serif;
-                font-size:16px; font-weight:600; color:#2D6A4F;">
-        {t["sign_off"]}
-    </div>
-    ''', unsafe_allow_html=True)
