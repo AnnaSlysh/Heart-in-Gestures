@@ -71,26 +71,3 @@ def app():
         </div>
         ''', unsafe_allow_html=True)
 
-        if i == 0:
-            col1, col2, col3 = st.columns([1, 2, 1])
-            with col2:
-                svg_path = "images/2.1.svg"
-                if os.path.exists(svg_path):
-                    st.image(svg_path, use_container_width=True)
-
-        if i == 3:
-            col1, col2, col3 = st.columns([1, 2, 1])
-            with col2:
-                c_left, c_right = st.columns(2)
-                with c_left:
-                    if os.path.exists("images/3.svg"):
-                        st.image("images/3.svg", use_container_width=True)
-                with c_right:
-                    if os.path.exists("images/6.svg"):
-                        st.image("images/6.svg", use_container_width=True)
-
-        if i == 4:
-            col1, col2, col3 = st.columns([1, 1, 1])
-            with col2:
-                if os.path.exists("images/hardwinn.svg"):
-                    st.image("images/hardwinn.svg", width=180)

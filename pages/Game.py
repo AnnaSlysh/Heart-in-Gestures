@@ -74,7 +74,7 @@ def app():
         level_meta = [
             (col1, "Легкий",   "Прості слова,\nідеально для початку",   "easy_button",   "easy"),
             (col2, "Середній", "Складніші слова,\nдля практики",         "medium_button", "medium"),
-            (col3, "Складний", "Для досвідчених,\nрізноманітні слова",   "hard_button",   "hard"),
+            (col3, "Складний", "Для досвідчених",                         "hard_button",   "hard"),
         ]
 
         for col, name, desc, key, level in level_meta:

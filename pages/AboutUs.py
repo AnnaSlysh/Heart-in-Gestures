@@ -102,15 +102,6 @@ def app():
 
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 
-    # About text card
-    st.markdown(f'''
-    <div class="card">
-        <div class="card-body">{t["about_text"]}</div>
-    </div>
-    ''', unsafe_allow_html=True)
-
-    st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
-
     # Mission / Vision / Goal cards
     for title_key, body_key in [
         ('mission', 'mission_text'),
