@@ -42,7 +42,6 @@ def app():
                 "The word is displayed on the screen. The player must play each letter in chronological order.",
                 "To have the game count your response, hold your hand in one position <strong> and then tap Take a photo </strong>. If the gesture has already been recognized, it will be marked as «already captured».",
                 "The letters <strong>Ґ Д Є З Ї Й К Ц Щ Ь</strong> are absent — they are not static signs.",
-                "Each wrong answer removes a petal from the flower. Lose all petals — game over. Guess all letters — the flower blooms!",
                 "The game is available in <strong>Ukrainian only</strong>.",
             ]
         }
