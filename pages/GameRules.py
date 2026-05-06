@@ -10,7 +10,7 @@ def app():
 
     # Language toggle
     st.markdown("<div style='margin-top: 10px;'></div>", unsafe_allow_html=True)
-    col_empty, col1, col2, col_empty2 = st.columns([2, 1, 1, 2])
+    col_empty, col1, col2, col_empty2 = st.columns([1, 2, 2, 1])
     with col1:
         if st.button("Українська", use_container_width=True, key="ua_btn_about_final"):
             st.session_state.language = 'uk'
