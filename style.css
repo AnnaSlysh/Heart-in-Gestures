@@ -426,11 +426,18 @@ div.stButton > button {
     text-align: center;
 }
 
+.stButton > button {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
 .stButton > button p,
-div.stButton > button p {
-    text-align: center;
-    width: 100%;
-    margin: 0;
+.stButton > button div,
+.stButton > button span {
+    text-align: center !important;
+    width: 100% !important;
+    margin: 0 !important;
 }
 
 .retry-button button,
