@@ -21,7 +21,7 @@ def app():
     texts = {
         'uk': {
             'title': "Правила гри",
-            'tagline': "Як грати в Hearting Gestures",
+            'tagline': "Як грати в Heart in Gestures",
             'rules': [
                 "Обери рівень складності. Гра побудована на жестах алфавіту української мови. На кожному рівні є <strong>10 спроб</strong> відгадати слово.",
                 "На екрані з'явиться вікно камери — виконуй жести, і система розпізнає їх за допомогою скелетної моделі руки.",
@@ -35,7 +35,7 @@ def app():
         },
         'en': {
             'title': "Game Rules",
-            'tagline': "How to play Hearting Gestures",
+            'tagline': "How to play Heart in Gestures",
             'rules': [
                 "Choose a difficulty level. The game uses gestures of the Ukrainian sign alphabet. Each level gives you <strong>10 attempts</strong> to guess the word.",
                 "A camera window will appear — perform gestures and the system will recognise them using a hand skeleton model.",

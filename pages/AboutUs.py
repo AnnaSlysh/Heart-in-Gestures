@@ -24,7 +24,7 @@ def app():
     texts = {
         'uk': {
             'about_us': "Про нас",
-            'tagline': "Hearting Gestures — гра для вивчення жестового алфавіту",
+            'tagline': "Heart in Gestures — гра для вивчення жестового алфавіту",
             'about_text': (
                 "Ми — група підлітків, учасниці міжнародного проекту <strong>Technovation Girls</strong>. "
                 "Ми довго обирали тему і зупинилися на інклюзії. "
@@ -52,7 +52,7 @@ def app():
         },
         'en': {
             'about_us': "About Us",
-            'tagline': "Hearting Gestures — a game for learning the sign alphabet",
+            'tagline': "Heart in Gestures — a game for learning the sign alphabet",
             'about_text': (
                 "We are a group of teenagers participating in the international project <strong>Technovation Girls</strong>. "
                 "We spent a long time choosing our topic and settled on inclusion. "
