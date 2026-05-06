@@ -100,8 +100,6 @@ def app():
         if os.path.exists(svg_path):
             st.image(svg_path, use_container_width=True)
 
-    st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
-
     # Mission / Vision / Goal cards
     for title_key, body_key in [
         ('mission', 'mission_text'),
