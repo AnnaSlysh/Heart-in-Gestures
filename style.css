@@ -423,6 +423,7 @@ footer { visibility: hidden; }
 div.stButton > button {
     padding: 0.68em 2em;
     font-size: 15px;
+    text-align: center;
 }
 
 .retry-button button,

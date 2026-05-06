@@ -96,7 +96,7 @@ def app():
     # Banner image
     col1, col2, col3 = st.columns([1, 3, 1])
     with col2:
-        svg_path = "images/Icon.svg"
+        svg_path = "images/icon.svg"
         if os.path.exists(svg_path):
             st.image(svg_path, use_container_width=True)
 
