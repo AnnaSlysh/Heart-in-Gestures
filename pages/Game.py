@@ -111,17 +111,17 @@ def app():
         st.markdown(render_word(word, letter_states, current_index), unsafe_allow_html=True)
         st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 
-        col1, col2 = st.columns(2)
+        if game_won:
+            st.markdown(
+                '<div class="game-stat" style="text-align:center;margin-top:12px;">'
+                '<div class="game-stat-value">Чудово! Ви склали все слово! 🎉</div>'
+                '</div>',
+                unsafe_allow_html=True,
+            )
+        else:
+            col1, col2 = st.columns(2)
 
-        with col1:
-            if game_won:
-                st.markdown(
-                    '<div class="game-stat" style="text-align:center;margin-top:12px;">'
-                    '<div class="game-stat-value">Чудово! Ви склали все слово! 🎉</div>'
-                    '</div>',
-                    unsafe_allow_html=True,
-                )
-            else:
+            with col1:
                 if "camera_key" not in st.session_state:
                     st.session_state.camera_key = 0
                 img_file = st.camera_input(
@@ -138,24 +138,24 @@ def app():
                     else:
                         st.warning("Руку не виявлено / No hand detected. Спробуйте ще / Try again.")
 
-        with col2:
-            if not game_won and current_index < len(word):
-                current_letter = word[current_index]
+            with col2:
+                if current_index < len(word):
+                    current_letter = word[current_index]
+                    st.markdown(f'''
+                    <div class="game-stat">
+                        <div class="game-stat-label">Покажіть жест для літери</div>
+                        <div class="game-stat-value" style="font-size:56px;line-height:1.1;">{current_letter}</div>
+                    </div>
+                    ''', unsafe_allow_html=True)
+
+                wrong_value = wrong_gesture if wrong_gesture else "&nbsp;"
+                wrong_color = "hsl(0,60%,50%)" if wrong_gesture else "transparent"
                 st.markdown(f'''
-                <div class="game-stat">
-                    <div class="game-stat-label">Покажіть жест для літери</div>
-                    <div class="game-stat-value" style="font-size:56px;line-height:1.1;">{current_letter}</div>
+                <div class="game-stat" style="margin-top:12px;">
+                    <div class="game-stat-label">Ваш жест (неправильно)</div>
+                    <div class="game-stat-value" style="font-size:56px;line-height:1.1;color:{wrong_color};">{wrong_value}</div>
                 </div>
                 ''', unsafe_allow_html=True)
-
-            wrong_value = wrong_gesture if wrong_gesture else "&nbsp;"
-            wrong_color = "hsl(0,60%,50%)" if wrong_gesture else "transparent"
-            st.markdown(f'''
-            <div class="game-stat" style="margin-top:12px;">
-                <div class="game-stat-label">Ваш жест (неправильно)</div>
-                <div class="game-stat-value" style="font-size:56px;line-height:1.1;color:{wrong_color};">{wrong_value}</div>
-            </div>
-            ''', unsafe_allow_html=True)
 
         st.markdown("<div style='margin-top:8px;'></div>", unsafe_allow_html=True)
         st.button("Назад до меню", on_click=lambda: change_level("menu"), key="back_1button", use_container_width=True)
