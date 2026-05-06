@@ -29,7 +29,7 @@ def app():
                 "Регіональні та територіальні організації УТОГ об'єднують понад <strong>50 000 громадян</strong> України з порушеннями слуху та мови."
             ),
             'invasport_title': "ІНВАСПОРТ",
-            'invasport_logo': "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2LzUJRpQ_EDlyT0Wgkl9ccfboOfBD3f6n3A&s",
+            'invasport_logo': "https://bcrivne.com/wp-content/uploads/2018/09/IvasportLOGO.jpg",
             'invasport_text': (
                 "Всеукраїнська громадська організація спортивного спрямування. "
                 "Спортивна федерація глухих України забезпечує розвиток <strong>олімпійського руху</strong> і спорту "
@@ -56,7 +56,7 @@ def app():
                 "with hearing and speech impairments."
             ),
             'invasport_title': "INVASPORT",
-            'invasport_logo': "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2LzUJRpQ_EDlyT0Wgkl9ccfboOfBD3f6n3A&s",
+            'invasport_logo': "https://bcrivne.com/wp-content/uploads/2018/09/IvasportLOGO.jpg",
             'invasport_text': (
                 "An all-Ukrainian public sports organisation. "
                 "The Sports Federation of the Deaf of Ukraine ensures the development of the "
