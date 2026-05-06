@@ -426,6 +426,13 @@ div.stButton > button {
     text-align: center;
 }
 
+.stButton > button p,
+div.stButton > button p {
+    text-align: center;
+    width: 100%;
+    margin: 0;
+}
+
 .retry-button button,
 .back-button button {
     background: hsl(161, 39%, 46%);
