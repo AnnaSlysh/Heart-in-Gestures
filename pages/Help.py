@@ -24,7 +24,7 @@ def app():
             'join_text': (
                 "Станьте частиною нашої спільноти — разом ми можемо змінити світ!<br><br>"
                 "З питань та пропозицій звертайтесь: "
-                "<a href='mailto:hartingestures@gmail.com'>hartingestures@gmail.com</a>"
+                "<a href='mailto:heartingestures@gmail.com'>heartingestures@gmail.com</a>"
             ),
             'feedback_title': "Ваші відгуки — важливі для нас",
             'feedback_text': (
@@ -42,7 +42,7 @@ def app():
             'partner_text': (
                 "Ми відкриті для співпраці з організаціями, що поділяють наші цінності!<br>"
                 "Напишіть нам: "
-                "<a href='mailto:hartingestures@gmail.com'>hartingestures@gmail.com</a>"
+                "<a href='mailto:heartingestures@gmail.com'>heartingestures@gmail.com</a>"
             ),
             'sign_off': "З повагою, команда Grlpwr"
         },
@@ -53,7 +53,7 @@ def app():
             'join_text': (
                 "Become part of our community — together we can change the world!<br><br>"
                 "For questions and suggestions: "
-                "<a href='mailto:hartingestures@gmail.com'>hartingestures@gmail.com</a>"
+                "<a href='mailto:heartingestures@gmail.com'>heartingestures@gmail.com</a>"
             ),
             'feedback_title': "Your Feedback Matters",
             'feedback_text': (
@@ -71,7 +71,7 @@ def app():
             'partner_text': (
                 "We are open to cooperation with organisations that share our values!<br>"
                 "Write to us: "
-                "<a href='mailto:hartingestures@gmail.com'>hartingestures@gmail.com</a>"
+                "<a href='mailto:heartingestures@gmail.com'>heartingestures@gmail.com</a>"
             ),
             'sign_off': "Respectfully, Grlpwr Team"
         }
